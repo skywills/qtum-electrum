@@ -1,5 +1,7 @@
 #!/bin/bash
 
+export http_proxy=http://192.168.77.185:1087;export https_proxy=http://192.168.77.185:1087;
+
 # Please update these carefully, some versions won't work under Wine
 NSIS_FILENAME=nsis-3.02.1-setup.exe
 NSIS_URL=https://prdownloads.sourceforge.net/nsis/$NSIS_FILENAME?download

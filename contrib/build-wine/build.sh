@@ -2,6 +2,8 @@
 # Lucky number
 export PYTHONHASHSEED=22
 
+export http_proxy=http://192.168.77.185:1087;export https_proxy=http://192.168.77.185:1087;
+
 if [ ! -z "$1" ]; then
     to_build="$1"
 fi
