@@ -114,7 +114,7 @@ exe_dependent = EXE(
     strip=None,
     upx=False,
     icon=home+'icons/electrum.ico',
-    console=False)
+    console=True)
 
 
 coll = COLLECT(

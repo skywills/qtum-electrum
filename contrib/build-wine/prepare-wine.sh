@@ -64,7 +64,12 @@ echo "done"
 
 wine 'wineboot'
 
-cd /tmp/qtum-electrum-build
+echo "Cleaning tmp"
+rm -rf tmp
+mkdir -p tmp
+echo "done"
+
+cd tmp
 
 # Install Python
 # note: you might need "sudo apt-get install dirmngr" for the following
