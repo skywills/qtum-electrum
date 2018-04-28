@@ -13,7 +13,11 @@ echo "Clearing $here/build and $here/dist..."
 rm "$here"/build/* -rf
 rm "$here"/dist/* -rf
 
-$here/prepare-eth-abi.sh && \
+mkdir -p /tmp/electrum-build/pip-cache
+export PIP_CACHE_DIR="/tmp/electrum-build/pip-cache"
+
+$here/prepare-eth-abi.sh || exit 1
+
 echo "Resetting modification time in C:\Python..."
 # (Because of some bugs in pyinstaller)
 pushd /opt/wine64/drive_c/python*
