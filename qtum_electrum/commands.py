@@ -454,9 +454,9 @@ class Commands:
         balance = 0
         out = []
         for item in self.wallet.get_history():
-            tx_hash, height, conf, timestamp, value, balance = item
-            if timestamp:
-                date = datetime.datetime.fromtimestamp(timestamp).isoformat(' ')[:-3]
+            tx_hash, tx_mined_status, value, balance = item
+            if tx_mined_status.timestamp:
+                date = datetime.datetime.fromtimestamp(tx_mined_status.timestamp).isoformat(' ')[:-3]
             else:
                 date = "----"
             label = self.wallet.get_label(tx_hash)
@@ -479,14 +479,14 @@ class Commands:
                 output_addresses.append(addr)
             out.append({
                 'txid': tx_hash,
-                'timestamp': timestamp,
+                'timestamp': tx_mined_status.timestamp,
                 'date': date,
                 'input_addresses': input_addresses,
                 'output_addresses': output_addresses,
                 'label': label,
                 'value': str(Decimal(value) / COIN) if value is not None else None,
-                'height': height,
-                'confirmations': conf
+                'height': tx_mined_status.height,
+                'confirmations': tx_mined_status.conf
             })
         return out
 

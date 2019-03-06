@@ -2419,9 +2419,10 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
         lines = []
         for item in history:
             tx_hash, height, confirmations, timestamp, value, balance = item
+            tx_hash, tx_mined_status, value, balance = item
             if height>0:
-                if timestamp is not None:
-                    time_string = format_time(timestamp)
+                if tx_mined_status.timestamp is not None:
+                    time_string = format_time(tx_mined_status.timestamp)
                 else:
                     time_string = _("unverified")
             else:
@@ -2438,7 +2439,7 @@ class ElectrumWindow(QMainWindow, MessageBoxMixin, PrintError):
                 label = ""
 
             if is_csv:
-                lines.append([tx_hash, label, confirmations, value_string, time_string])
+                lines.append([tx_hash, label, tx_mined_status.conf, value_string, time_string])
             else:
                 lines.append({'txid':tx_hash, 'date':"%16s"%time_string, 'label':label, 'value':value_string})
 
